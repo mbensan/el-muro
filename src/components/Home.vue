@@ -61,8 +61,9 @@ export default {
   },
   methods: {
     get_image(ev) {
+      // Si el input no tiene archivo, salgo altiro
       if (ev.target.files.length == 0) {
-        return
+        return;
       }
       this.post_image = ev.target.files[0];
     },
@@ -81,6 +82,7 @@ export default {
       });
     },
     add_image() {
+      // si el usuario no subió una imagen, llamo altiro a add_post
       if (this.post_image == null) {
         this.add_post(null);
         return;
