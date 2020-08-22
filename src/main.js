@@ -10,7 +10,7 @@ import App from './App.vue'
 import router from '@/router';
 
 Vue.config.productionTip = false
-
+/* eslint-disable no-debugger */
 // Acá se activan las librerías
 Vue.use(Vuex)
 Vue.use(VueFirestore, {key: 'id'});

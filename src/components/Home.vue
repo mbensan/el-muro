@@ -22,7 +22,7 @@
       </form>
       <div class="posts">
         <ul class="collection">
-          <li v-for="post in posts" :key="post.id" class="collection-item avatar">
+          <li v-for="post in sortedPosts" :key="post.id" class="collection-item avatar">
             <img :src="!post.img ? 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg' : post.img" alt="" class="circle">
             <span class="title">{{ post.text }}</span>
             <p>{{ post.user.name }} <br>
@@ -45,9 +45,9 @@ import firebase from 'firebase';
 import { db } from '@/firebase';
 
 const getDate = () => {
-  const trailing = (d) => d.length < 10 ? '0'+d : d;
+  const trailing = (d) => ('0' + d).slice(-2);
   const now = new Date();
-  return `${now.getFullYear()}-${trailing(now.getMonth())}-${trailing(now.getDate())} ${trailing(now.getHours())}:${trailing(now.getMinutes())}:${trailing(now.getSeconds())}`;
+  return `${now.getFullYear()}-${trailing(now.getMonth() + 1)}-${trailing(now.getDate())} ${trailing(now.getHours())}:${trailing(now.getMinutes())}:${trailing(now.getSeconds())}`;
 }
 
 export default {
@@ -57,6 +57,13 @@ export default {
       post_text: '',
       post_image: null,
       posts: []
+    }
+  },
+  computed: {
+    sortedPosts() {
+      return this.posts.sort(function(a, b){
+        return a.date.localeCompare(b.date)
+      });
     }
   },
   methods: {
