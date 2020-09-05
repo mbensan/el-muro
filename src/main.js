@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 // Acá se activan las librerías
 Vue.use(Vuex)
 Vue.use(VueFirestore, {key: 'id'});
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
 const store = new Vuex.Store({
   state: {
@@ -79,6 +80,13 @@ const store = new Vuex.Store({
     }
   }
 })
+
+{
+  const user = firebase.auth().currentUser
+  if (user) {
+    console.log('asdfg')
+  }
+}
 
 new Vue({
   render: h => h(App),

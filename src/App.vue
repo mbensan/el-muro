@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-wrapper">
         <a href="#" v-if="user" class="brand-logo">Bienvenido {{ user.name }}</a>
-        <a href="#" v-else class="brand-logo">El Muro</a>
+        <a href="#" v-else class="brand-logo">Mati Trivias</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li v-if="user"><a @click.prevent="logout" class="btn" href="#" >Salir</a></li>
         </ul>
@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #aaa;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,4 +47,6 @@ export default {
   color: #616161;
   font-weight: bold;
 }
+.left { float: left }
+.right { float: right }
 </style>
